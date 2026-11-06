@@ -1,0 +1,11 @@
+path,label,prob,pred,confidence,width,height,file_size,format,mode
+data/raw/RealArt/02-still-for-america-room-loop-superJumbo.jpg,0,0.976866,1,0.976866,2048,1365,563605,JPEG,RGB
+data/raw/RealArt/Mali_-_Bozo_girl_in_Bamako.jpg,0,0.96765465,1,0.96765465,2336,3504,3121778,JPEG,RGB
+data/raw/AiArtData/240201-airec-main-ksp-5625e8.jpg,1,0.0328699,0,0.9671301,760,380,184317,JPEG,RGB
+data/raw/RealArt/famous-portrait-paintings_wide-3-2-636b81a7177ce.png,0,0.96147025,1,0.96147025,1200,800,1750322,PNG,RGB
+data/raw/RealArt/Women-clothing-Kenya-East-Africa.jpg,0,0.93564755,1,0.93564755,1600,836,267179,JPEG,RGB
+data/raw/RealArt/what-color-paintings-sell-best.jpg,0,0.92157316,1,0.92157316,1534,949,240079,JPEG,RGB
+data/raw/RealArt/3-self-portraits-by-zanele-muholi.jpg,0,0.9102987,1,0.9102987,1200,690,119362,JPEG,RGB
+data/raw/RealArt/images70.jpg,0,0.9062911,1,0.9062911,275,183,14790,JPEG,RGB
+data/raw/AiArtData/ai-generated-photos-aurel-manea-1.jpg,1,0.10049704,0,0.89950296,1600,880,153338,JPEG,RGB
+data/raw/RealArt/getty_511618259_186076.jpg,0,0.8760086,1,0.8760086,1920,1080,301304,JPEG,RGB
