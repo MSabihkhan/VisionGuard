@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import tensorflow as tf
 
+from preprocess import prepare
+
 IMG = 160
 BATCH = 32
 SEED = 42
@@ -16,21 +18,20 @@ augment = tf.keras.Sequential([
 ])
 
 
-def load_image(path, label):
-    img = tf.io.read_file(path)
-    img = tf.io.decode_image(img, channels=3, expand_animations=False)
-    img = tf.image.resize(img, (IMG, IMG))
-    return img, label
+def load_image(path, label, img=IMG):
+    raw = tf.io.read_file(path)
+    return prepare(raw, img), label
 
 
-def make_ds(csv, train=False):
+def make_ds(csv, train=False, img=IMG, augment_on=True):
     df = pd.read_csv(csv)
     ds = tf.data.Dataset.from_tensor_slices((df.path.tolist(), df.label.values.astype("float32")))
-    ds = ds.map(load_image, num_parallel_calls=tf.data.AUTOTUNE)
+    ds = ds.map(lambda p, y: load_image(p, y, img), num_parallel_calls=tf.data.AUTOTUNE)
     ds = ds.cache()
     if train:
         ds = ds.shuffle(len(df), seed=SEED)
-        ds = ds.map(lambda x, y: (augment(x, training=True), y), num_parallel_calls=tf.data.AUTOTUNE)
+        if augment_on:
+            ds = ds.map(lambda x, y: (augment(x, training=True), y), num_parallel_calls=tf.data.AUTOTUNE)
     return ds.batch(BATCH).prefetch(tf.data.AUTOTUNE)
 
 

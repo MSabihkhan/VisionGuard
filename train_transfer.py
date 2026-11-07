@@ -21,8 +21,8 @@ model = tf.keras.Model(inputs, outputs)
 
 
 def save_trainable(stage):
-    names = [l.name for l in base.layers if l.trainable and l.weights]
-    names += [l.name for l in model.layers if l is not base and l.trainable and l.weights]
+    names = [layer.name for layer in base.layers if layer.trainable and layer.weights]
+    names += [layer.name for layer in model.layers if layer is not base and layer.trainable and layer.weights]
     print(stage, "trainable layers:", len(names))
     print(names)
     with open(f"reports/trainable_{stage}.txt", "w") as f:
