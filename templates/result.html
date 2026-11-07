@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>{{ 'Results' if results|length > 1 else 'Result' }}</h1>
+  {% for error in errors %}<div class="alert">{{ error }}</div>{% endfor %}
+  {% for r in results %}
+  <div class="item">
+    <img class="preview" src="{{ r.preview }}" alt="uploaded image">
+    <p class="verdict {{ 'ai' if r.label == 'AI-generated' else 'real' }}">{{ r.label }}</p>
+    <p>Confidence: <strong>{{ '%.1f'|format(r.confidence * 100) }}%</strong></p>
+    <div class="bar"><div style="width: {{ '%.1f'|format(r.confidence * 100) }}%"></div></div>
+    <p class="muted">File: {{ r.filename }} &middot; AI score: {{ '%.3f'|format(r.ai_score) }} &middot; Model: {{ r.model_name }}</p>
+  </div>
+  {% endfor %}
+  <p class="caveat">This is a statistical estimate, not proof. The model was trained on a small dataset and can be wrong, especially on paintings, heavily edited photos and low-resolution images.</p>
+  <a class="button" href="{{ url_for('index') }}">Check more images</a>
+</section>
+{% endblock %}

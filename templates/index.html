@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Is this image real or AI-generated?</h1>
+  <p class="muted">Upload one or more PNG or JPG images (max {{ max_mb }} MB in total). The image is analysed in memory and is not saved.</p>
+  {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+  <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/png,image/jpeg" multiple required>
+    <button type="submit">Check image</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card wide">
+  <h1>History</h1>
+  {% if rows %}
+  <table>
+    <thead>
+      <tr><th>#</th><th>When (UTC)</th><th>File</th><th>Decision</th><th>Confidence</th><th>Model</th></tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ r.filename }}</td>
+        <td><span class="tag {{ 'ai' if r.label == 'AI-generated' else 'real' }}">{{ r.label }}</span></td>
+        <td>{{ '%.1f'|format(r.confidence * 100) }}%</td>
+        <td>{{ r.model_name }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="muted">No predictions yet.</p>
+  {% endif %}
+</section>
+{% endblock %}

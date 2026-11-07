@@ -7,3 +7,6 @@ model/
 tuner/
 toy_tuner/
 /models
+
+*.db
+reports/tracked/
