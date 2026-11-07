@@ -1,0 +1,6 @@
+*
+!requirements-api.txt
+!api.py
+!inference.py
+!preprocess.py
+!models/champion
